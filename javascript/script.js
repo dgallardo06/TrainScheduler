@@ -37,7 +37,7 @@ $(document).ready(function () {
 		console.log(newTrain.time);
 		console.log(newTrain.frequency);
 
-		//********** Create Modal
+
 		alert("Employee successfully added");
 
 		//Clear text boxes
