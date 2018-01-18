@@ -1,0 +1,22 @@
+.jumbotron {
+	background-color: #36C18D;
+	color: black;
+}
+img {
+	height: 60px;
+	width: auto;
+}
+
+.panel-primary {
+	border-color: #447972;
+}
+
+.panel-primary>.panel-heading {
+	background-color: #447972;
+	border-color: #447972;
+}
+
+.btn-primary {
+	background-color: #447972;
+	border-color: #447972;
+}
