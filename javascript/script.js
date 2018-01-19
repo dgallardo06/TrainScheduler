@@ -19,9 +19,8 @@ $(document).ready(function () {
 
 		var trainName = $("#train-input").val().trim();
 		var destinationName = $("#destination-input").val().trim();
-		var trainTime = moment($("#first-train-input").val().trim(), "HH:mm").format("X");
+		var trainTime = moment($("#first-train-input").val().trim(), "HH:mm").format("HH");
 		var trainFrequency = $("#frequency-input").val().trim();
-
 
 		var newTrain = {
 			train: trainName,
@@ -31,11 +30,6 @@ $(document).ready(function () {
 		};
 
 		database.ref().push(newTrain);
-
-		console.log(newTrain.train);
-		console.log(newTrain.destination);
-		console.log(newTrain.time);
-		console.log(newTrain.frequency);
 
 
 		alert("Employee successfully added");
@@ -49,18 +43,11 @@ $(document).ready(function () {
 
 		database.ref().on("child_added", function(childSnapshot){
 
-			console.log(childSnapshot.val());
-
 			//Store everything into a variable
 			var trnName = childSnapshot.val().train;
 			var trnDestination = childSnapshot.val().destination;
 			var trnTime = childSnapshot.val().time;
 			var trnRate = childSnapshot.val().frequency;
-
-			console.log(trnName);
-			console.log(trnDestination);
-			console.log(trnTime);
-			console.log(trnRate);
 
 			//Format time to military time
 			var trnTimeFormatted = moment(trnTime).format("HH");
@@ -79,7 +66,8 @@ $(document).ready(function () {
 		    var minutesAway = trnRate - tRemainder;
 
 		    // Next arrival
-		    var nextTrain = moment().add(minutesAway, "minutes");
+		    var nextTrain = moment().add(minutesAway, "minutes").format("HH:mm");
+
 
 			//Show train info in schedule table
 			$("#train-schedule-table > tbody").append("<tr><td>" + trnName + "</td><td>" + trnDestination + "</td><td>" + trnRate + "</td><td>" + nextTrain + "</td><td>" + minutesAway + "</td></tr>");
